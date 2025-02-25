@@ -3,3 +3,7 @@ res://tilesets/game_tile_set.tres
 res://scripts/item/implementation/default_drill.tres
 res://scenes/world.tscn
 res://tilesets/game.tscn
+res://Bennet/main_menu.tscn
+res://Stefan/DNC/DNC Scenes/daynight.tscn
+res://Stefan/DNC/DNC Scenes/daynightcycle_ui.tscn
+res://Stefan/DNC/DNC Assets/daynightcycle-gradient-texture.tres

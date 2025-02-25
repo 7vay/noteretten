@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://chcgoxbd3a5tb"]
+[gd_scene load_steps=26 format=3 uid="uid://chcgoxbd3a5tb"]
 
 [ext_resource type="PackedScene" uid="uid://djfp1kvabayum" path="res://scenes/ui.tscn" id="1_g62fh"]
 [ext_resource type="PackedScene" uid="uid://bjdgo7rq2bvrm" path="res://scenes/items/dropped_item.tscn" id="1_jus4h"]
@@ -15,6 +15,10 @@
 [ext_resource type="Resource" uid="uid://ctxo46i7hxk15" path="res://scripts/item/implementation/stone.tres" id="10_b6lej"]
 [ext_resource type="PackedScene" uid="uid://d1va08jdayvjq" path="res://scenes/inventory/hotbar.tscn" id="12_5ptmo"]
 [ext_resource type="PackedScene" uid="uid://cptu8poyjm4fx" path="res://tilesets/game.tscn" id="15_us02e"]
+[ext_resource type="PackedScene" uid="uid://bileobivsa7ym" path="res://Stefan/DNC/DNC Scenes/daynight.tscn" id="16_2cyro"]
+[ext_resource type="PackedScene" uid="uid://d4bhqhiwjftqj" path="res://Stefan/DNC/DNC Scenes/daynightcycle_ui.tscn" id="17_yw8xr"]
+[ext_resource type="Script" path="res://Stefan/DNC/DNC Scripts/daynightcycle_ui.gd" id="20_3kjc8"]
+[ext_resource type="Texture2D" uid="uid://dw6o31i7kasnm" path="res://Stefan/DNC/DNC Assets/daynightcycle-ui.png" id="21_bag57"]
 
 [sub_resource type="Animation" id="Animation_2wms5"]
 length = 0.001
@@ -52,6 +56,13 @@ _data = {
 "RESET": SubResource("Animation_2wms5"),
 "shake": SubResource("Animation_gfq5a")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhpxs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ybl7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm7s6"]
+region = Rect2(2, 47, 16, 5)
 
 [node name="Game" type="Node2D"]
 
@@ -124,6 +135,80 @@ placeable_manager = NodePath("../../PlaceableManager")
 
 [node name="Game" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("15_us02e")]
 camera = NodePath("../Camera2D")
+
+[node name="DayNightCycleScene" parent="." instance=ExtResource("16_2cyro")]
+
+[node name="DayNightCycleUI" parent="DayNightCycleScene" instance=ExtResource("17_yw8xr")]
+offset_left = 14.0
+offset_top = -33.0
+offset_right = 14.0
+offset_bottom = -33.0
+script = ExtResource("20_3kjc8")
+
+[node name="TextureRect2" type="TextureRect" parent="DayNightCycleScene/DayNightCycleUI"]
+material = SubResource("ShaderMaterial_rhpxs")
+layout_mode = 0
+offset_left = 1069.0
+offset_top = -0.40457
+offset_right = 1144.0
+offset_bottom = 54.5954
+texture = ExtResource("21_bag57")
+
+[node name="CenterContainerDay2" type="CenterContainer" parent="DayNightCycleScene/DayNightCycleUI"]
+layout_mode = 0
+offset_left = 1073.0
+offset_top = 8.59543
+offset_right = 1119.0
+offset_bottom = 20.5954
+
+[node name="DayLabelBackground" type="Label" parent="DayNightCycleScene/DayNightCycleUI/CenterContainerDay2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.898039, 0.576471, 0.419608, 1)
+theme_override_font_sizes/font_size = 8
+text = "Day 13"
+
+[node name="DayLabel" type="Label" parent="DayNightCycleScene/DayNightCycleUI/CenterContainerDay2/DayLabelBackground"]
+layout_mode = 2
+offset_top = -1.0
+offset_right = 33.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0.490196, 0.219608, 0.2, 1)
+theme_override_font_sizes/font_size = 8
+text = "Day 13"
+
+[node name="CenterContainerTime2" type="CenterContainer" parent="DayNightCycleScene/DayNightCycleUI"]
+layout_mode = 0
+offset_left = 1073.0
+offset_top = 28.5954
+offset_right = 1120.0
+offset_bottom = 40.5954
+
+[node name="TimeLabelBackground" type="Label" parent="DayNightCycleScene/DayNightCycleUI/CenterContainerTime2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.898039, 0.576471, 0.419608, 1)
+theme_override_font_sizes/font_size = 8
+text = "12:00 am"
+
+[node name="TimeLabel" type="Label" parent="DayNightCycleScene/DayNightCycleUI/CenterContainerTime2/TimeLabelBackground"]
+layout_mode = 2
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0.490196, 0.219608, 0.2, 1)
+theme_override_font_sizes/font_size = 8
+text = "12:00 am"
+
+[node name="Arrow2" type="TextureRect" parent="DayNightCycleScene/DayNightCycleUI"]
+material = SubResource("ShaderMaterial_1ybl7")
+layout_mode = 0
+offset_left = 1120.0
+offset_top = 18.5954
+offset_right = 1160.0
+offset_bottom = 58.5954
+rotation = -1.60047
+pivot_offset = Vector2(1, 2.5)
+texture = SubResource("AtlasTexture_lm7s6")
+stretch_mode = 2
 
 [connection signal="area_entered" from="PlaceableManager/CurrentPlaceable/Area2D" to="PlaceableManager/CurrentPlaceable" method="_on_area_enter"]
 [connection signal="area_exited" from="PlaceableManager/CurrentPlaceable/Area2D" to="PlaceableManager/CurrentPlaceable" method="_on_area_exit"]

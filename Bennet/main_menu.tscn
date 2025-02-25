@@ -1,0 +1,145 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmeoak5qcjg30"]
+
+[ext_resource type="Script" path="res://scripts/mainmenu/main_menu.gd" id="1_57hxi"]
+[ext_resource type="FontFile" uid="uid://d2o38pe37gbkl" path="res://assets/game/fonts/GrapeSoda.ttf" id="2_l8osu"]
+[ext_resource type="Texture2D" uid="uid://yce8rgfcxfjo" path="res://assets/game/background/Screenshot 2025-02-24 155155.png" id="2_yrrlx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1377f"]
+texture = ExtResource("2_yrrlx")
+modulate_color = Color(0.458405, 0.458405, 0.458405, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vbago"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egg4j"]
+bg_color = Color(0.804743, 0.804743, 0.804743, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmara"]
+bg_color = Color(0.650128, 0.650128, 0.650128, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vypgq"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_57hxi")
+
+[node name="Hintergrund" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1377f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = 37.0
+offset_right = 164.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Starten" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.849381, 0.600773, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vbago")
+theme_override_styles/hover = SubResource("StyleBoxFlat_egg4j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmara")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vypgq")
+text = "Starten"
+
+[node name="Laden" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.849381, 0.600773, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vbago")
+theme_override_styles/hover = SubResource("StyleBoxFlat_egg4j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmara")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vypgq")
+text = "Laden"
+
+[node name="Beenden" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.849381, 0.600773, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vbago")
+theme_override_styles/hover = SubResource("StyleBoxFlat_egg4j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmara")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vypgq")
+text = "Beenden"
+
+[node name="Titel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -297.0
+offset_top = -182.0
+offset_right = 307.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("2_l8osu")
+theme_override_font_sizes/font_size = 80
+text = "Stevbeto Exploration"
+
+[connection signal="pressed" from="VBoxContainer/Starten" to="." method="_on_starten_pressed"]
+[connection signal="pressed" from="VBoxContainer/Laden" to="." method="_on_laden_pressed"]
+[connection signal="pressed" from="VBoxContainer/Beenden" to="." method="_on_beenden_pressed"]

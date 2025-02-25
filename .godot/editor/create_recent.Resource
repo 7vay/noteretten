@@ -1,0 +1,4 @@
+PlacableResource
+DrillResource
+ItemResource
+Resource

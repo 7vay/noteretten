@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DrillResource" load_steps=3 format=3 uid="uid://bjvg56gr2uoos"]
+
+[ext_resource type="Script" path="res://scripts/item/drill.gd" id="1_ei6fi"]
+[ext_resource type="Texture2D" uid="uid://bq53rt8bxhbmm" path="res://assets/sprites/drill.png" id="2_123ng"]
+
+[resource]
+script = ExtResource("1_ei6fi")
+damage_per_use = 1
+cooldown = 5
+range = 130
+item_name = ""
+texture = ExtResource("2_123ng")
+max_stack_size = 0

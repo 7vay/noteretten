@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://b30h32snp14ks"]
+
+[ext_resource type="Script" path="res://scripts/inventory/inventory_interface.gd" id="1_000hu"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_screen.gd" id="1_e3h5w"]
+[ext_resource type="PackedScene" uid="uid://csnfj11tetexq" path="res://scenes/inventory/selection_button.tscn" id="2_3jhm7"]
+[ext_resource type="PackedScene" uid="uid://b8veawv8inmq7" path="res://scenes/inventory/building/buy_button.tscn" id="2_v7k6g"]
+[ext_resource type="Texture2D" uid="uid://crywdhlcedfwq" path="res://assets/sprites/inventory/inventory_button.png" id="2_vjmod"]
+[ext_resource type="Texture2D" uid="uid://7l737u8d5vge" path="res://assets/sprites/inventory/power_generator_button.png" id="3_lian6"]
+[ext_resource type="Texture2D" uid="uid://0tu4u2tahja" path="res://assets/sprites/inventory/building_button.png" id="3_x164x"]
+[ext_resource type="Texture2D" uid="uid://dmvqnojy2eycy" path="res://assets/sprites/inventory/inventory_button_hoverd.png" id="4_4vd6o"]
+[ext_resource type="Texture2D" uid="uid://85wwi5n8ytf4" path="res://assets/sprites/inventory/power_generator_button_hovered.png" id="4_fkyaa"]
+[ext_resource type="Texture2D" uid="uid://cqydxvmstvgnb" path="res://assets/sprites/inventory/building_button_hovered.png" id="6_jlmd4"]
+[ext_resource type="Script" path="res://scripts/inventory/current_inventory_item.gd" id="11_rkwli"]
+
+[node name="InventoryScreen" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e3h5w")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+script = ExtResource("1_000hu")
+
+[node name="VFlowContainer" type="VFlowContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BuyButton" parent="VFlowContainer" instance=ExtResource("2_v7k6g")]
+layout_mode = 2
+normal_texture = ExtResource("3_lian6")
+hovered_texture = ExtResource("4_fkyaa")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/margin_bottom = 450
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="InventoryButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_3jhm7")]
+layout_mode = 2
+normal_texture = ExtResource("2_vjmod")
+hovered_texture = ExtResource("4_4vd6o")
+
+[node name="BuildingButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_3jhm7")]
+layout_mode = 2
+normal_texture = ExtResource("3_x164x")
+hovered_texture = ExtResource("6_jlmd4")
+
+[node name="CurrentInventoryItem" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("11_rkwli")
+
+[connection signal="button_clicked" from="VFlowContainer/BuyButton" to="." method="_on_buy_button_clicked"]

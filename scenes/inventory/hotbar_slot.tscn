@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://eva8f8pyh5pf"]
+
+[ext_resource type="Script" path="res://scripts/inventory/hotbar_slot.gd" id="1_i16of"]
+[ext_resource type="Texture2D" uid="uid://dona640k4euc" path="res://assets/sprites/inventory/inventory_slot.png" id="2_77623"]
+[ext_resource type="PackedScene" uid="uid://bhxplr7s35x1p" path="res://scenes/inventory/inventory_item.tscn" id="3_k2x4o"]
+
+[node name="HotbarItem" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_i16of")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_77623")
+
+[node name="InventoryItem" parent="." instance=ExtResource("3_k2x4o")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2

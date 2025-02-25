@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://djfp1kvabayum"]
+
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="1_ub6mo"]
+[ext_resource type="Texture2D" uid="uid://djmtptfe3kek2" path="res://assets/sprites/new_health_bar.png" id="2_p7ils"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_ub6mo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 320.0
+offset_bottom = 80.0
+texture = ExtResource("2_p7ils")
+expand_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 90.0

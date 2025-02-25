@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjdgo7rq2bvrm"]
+
+[ext_resource type="Script" path="res://scripts/dropped_item/dropped_item.gd" id="1_da0ql"]
+[ext_resource type="Texture2D" uid="uid://bq53rt8bxhbmm" path="res://assets/sprites/drill.png" id="2_t2gcp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hlgr7"]
+radius = 14.0
+
+[sub_resource type="Animation" id="Animation_e1e3f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a837k"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lrxyd"]
+_data = {
+"RESET": SubResource("Animation_e1e3f"),
+"idle": SubResource("Animation_a837k")
+}
+
+[node name="DroppedItem" type="Node2D"]
+script = ExtResource("1_da0ql")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_t2gcp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hlgr7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lrxyd")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

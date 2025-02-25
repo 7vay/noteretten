@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://chcgoxbd3a5tb"]
+
+[ext_resource type="PackedScene" uid="uid://djfp1kvabayum" path="res://scenes/ui.tscn" id="1_g62fh"]
+[ext_resource type="PackedScene" uid="uid://bjdgo7rq2bvrm" path="res://scenes/items/dropped_item.tscn" id="1_jus4h"]
+[ext_resource type="PackedScene" uid="uid://p7jpax8ievsw" path="res://scenes/world.tscn" id="1_simu4"]
+[ext_resource type="Script" path="res://scripts/placable_manager.gd" id="3_p8efq"]
+[ext_resource type="Script" path="res://scripts/player/current_placable.gd" id="4_hd6hb"]
+[ext_resource type="PackedScene" uid="uid://2y4u2jk51eyn" path="res://scenes/player.tscn" id="5_n0onf"]
+[ext_resource type="Resource" uid="uid://bjvg56gr2uoos" path="res://scripts/item/implementation/default_drill.tres" id="6_sk3jl"]
+[ext_resource type="PackedScene" uid="uid://b2moq5c4hx7ox" path="res://scenes/stone.tscn" id="6_y2il3"]
+[ext_resource type="Script" path="res://scripts/dropped_item/dropped_item_manager.gd" id="7_ar88k"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="8_bra2a"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="9_evp7w"]
+[ext_resource type="PackedScene" uid="uid://b30h32snp14ks" path="res://scenes/inventory/inventory_screen.tscn" id="9_k1fpi"]
+[ext_resource type="Resource" uid="uid://ctxo46i7hxk15" path="res://scripts/item/implementation/stone.tres" id="10_b6lej"]
+[ext_resource type="PackedScene" uid="uid://d1va08jdayvjq" path="res://scenes/inventory/hotbar.tscn" id="12_5ptmo"]
+
+[sub_resource type="Animation" id="Animation_2wms5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gfq5a"]
+resource_name = "shake"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.00698132, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwl2e"]
+_data = {
+"RESET": SubResource("Animation_2wms5"),
+"shake": SubResource("Animation_gfq5a")
+}
+
+[node name="Game" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_simu4")]
+
+[node name="Ui" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_g62fh")]
+player = NodePath("../Player")
+
+[node name="PlaceableManager" type="Node2D" parent="."]
+script = ExtResource("3_p8efq")
+
+[node name="CurrentPlaceable" type="Node2D" parent="PlaceableManager"]
+position = Vector2(-3, -3)
+rotation = 3.14159
+scale = Vector2(1, -1)
+script = ExtResource("4_hd6hb")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlaceableManager/CurrentPlaceable"]
+
+[node name="Area2D" type="Area2D" parent="PlaceableManager/CurrentPlaceable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableManager/CurrentPlaceable/Area2D"]
+
+[node name="Stone" parent="." node_paths=PackedStringArray("dropped_item_manager") instance=ExtResource("6_y2il3")]
+position = Vector2(89, -18)
+dropped_item_manager = NodePath("../DroppedItemManager")
+
+[node name="DroppedItemManager" type="Node" parent="."]
+script = ExtResource("7_ar88k")
+
+[node name="DroppedItem" parent="DroppedItemManager" instance=ExtResource("1_jus4h")]
+position = Vector2(-23, 79)
+item = ExtResource("6_sk3jl")
+
+[node name="DroppedItem2" parent="DroppedItemManager" instance=ExtResource("1_jus4h")]
+position = Vector2(-61, 78)
+item = ExtResource("10_b6lej")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+ignore_rotation = false
+zoom = Vector2(3.5, 3.5)
+script = ExtResource("8_bra2a")
+player = NodePath("../Player")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+libraries = {
+"": SubResource("AnimationLibrary_vwl2e")
+}
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera", "hotbar", "inventory_screen") instance=ExtResource("5_n0onf")]
+camera = NodePath("../Camera2D")
+hotbar = NodePath("../CanvasLayer/Hotbar")
+inventory_screen = NodePath("../CanvasLayer/InventoryScreen")
+
+[node name="RemoteCamera" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="Inventory" type="Node" parent="Player"]
+script = ExtResource("9_evp7w")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hotbar" parent="CanvasLayer" node_paths=PackedStringArray("inventory") instance=ExtResource("12_5ptmo")]
+inventory = NodePath("../../Player/Inventory")
+
+[node name="InventoryScreen" parent="CanvasLayer" node_paths=PackedStringArray("inventory", "placable_manager") instance=ExtResource("9_k1fpi")]
+visible = false
+inventory = NodePath("../../Player/Inventory")
+placable_manager = NodePath("../../PlaceableManager")
+
+[connection signal="area_entered" from="PlaceableManager/CurrentPlaceable/Area2D" to="PlaceableManager/CurrentPlaceable" method="_on_area_enter"]
+[connection signal="area_exited" from="PlaceableManager/CurrentPlaceable/Area2D" to="PlaceableManager/CurrentPlaceable" method="_on_area_exit"]

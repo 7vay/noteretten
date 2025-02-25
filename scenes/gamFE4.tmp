@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3 uid="uid://chcgoxbd3a5tb"]
+
+[ext_resource type="PackedScene" uid="uid://djfp1kvabayum" path="res://scenes/ui.tscn" id="1_g62fh"]
+[ext_resource type="PackedScene" uid="uid://bjdgo7rq2bvrm" path="res://scenes/items/dropped_item.tscn" id="1_jus4h"]
+[ext_resource type="PackedScene" uid="uid://p7jpax8ievsw" path="res://scenes/world.tscn" id="1_simu4"]
+[ext_resource type="PackedScene" uid="uid://2y4u2jk51eyn" path="res://scenes/player.tscn" id="5_n0onf"]
+[ext_resource type="PackedScene" uid="uid://b2moq5c4hx7ox" path="res://scenes/stone.tscn" id="6_y2il3"]
+[ext_resource type="Script" path="res://scripts/dropped_item/dropped_item_manager.gd" id="7_ar88k"]
+[ext_resource type="Resource" uid="uid://bpnfcu53yd1ae" path="res://scripts/item/implementation/drill.tres" id="8_r51bx"]
+[ext_resource type="PackedScene" uid="uid://b30h32snp14ks" path="res://scenes/inventory/inventory_screen.tscn" id="9_k1fpi"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="9_tpd8k"]
+[ext_resource type="Resource" uid="uid://ctxo46i7hxk15" path="res://scripts/item/implementation/stone.tres" id="10_b6lej"]
+[ext_resource type="PackedScene" uid="uid://d1va08jdayvjq" path="res://scenes/inventory/hotbar.tscn" id="12_5ptmo"]
+
+[node name="Game" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_simu4")]
+
+[node name="Ui" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_g62fh")]
+player = NodePath("../Player")
+
+[node name="Stone" parent="." node_paths=PackedStringArray("dropped_item_manager") instance=ExtResource("6_y2il3")]
+position = Vector2(89, -18)
+dropped_item_manager = NodePath("../DroppedItemManager")
+
+[node name="DroppedItemManager" type="Node" parent="."]
+script = ExtResource("7_ar88k")
+
+[node name="DroppedItem" parent="DroppedItemManager" instance=ExtResource("1_jus4h")]
+position = Vector2(-23, 79)
+item = ExtResource("8_r51bx")
+
+[node name="DroppedItem2" parent="DroppedItemManager" instance=ExtResource("1_jus4h")]
+position = Vector2(-61, 78)
+item = ExtResource("10_b6lej")
+
+[node name="Player" parent="." node_paths=PackedStringArray("hotbar", "inventory_screen") instance=ExtResource("5_n0onf")]
+hotbar = NodePath("../CanvasLayer/Hotbar")
+inventory_screen = NodePath("../CanvasLayer/InventoryScreen")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+
+[node name="Inventory" type="Node" parent="Player"]
+script = ExtResource("9_tpd8k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hotbar" parent="CanvasLayer" node_paths=PackedStringArray("inventory") instance=ExtResource("12_5ptmo")]
+inventory = NodePath("../../Player/Inventory")
+
+[node name="InventoryScreen" parent="CanvasLayer" node_paths=PackedStringArray("inventory") instance=ExtResource("9_k1fpi")]
+visible = false
+inventory = NodePath("../../Player/Inventory")

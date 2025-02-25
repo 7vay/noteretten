@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://begp7oa55diag"]
+
+[ext_resource type="Texture2D" uid="uid://cqsu34x2j2qmf" path="res://assets/sprites/power_generator.png" id="1_1j5k7"]
+[ext_resource type="Script" path="res://scripts/placable.gd" id="1_wl5d3"]
+[ext_resource type="Script" path="res://scripts/components/boundingbox.gd" id="2_kfe7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epnjl"]
+size = Vector2(26, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30ee7"]
+size = Vector2(26, 28)
+
+[node name="PowerGenerator" type="StaticBody2D" node_paths=PackedStringArray("shape", "sprite")]
+script = ExtResource("1_wl5d3")
+shape = NodePath("BoundingBox/CollisionShape2D")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1j5k7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_epnjl")
+
+[node name="BoundingBox" type="Area2D" parent="."]
+script = ExtResource("2_kfe7v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundingBox"]
+shape = SubResource("RectangleShape2D_30ee7")

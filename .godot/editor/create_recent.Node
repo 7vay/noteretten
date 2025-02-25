@@ -1,0 +1,15 @@
+NinePatchRect
+Sprite2D
+AnimationPlayer
+AnimatedSprite2D
+TextureRect
+Node2D
+Node
+Walking
+Idle
+GPUParticles2D
+RemoteTransform2D
+Timer
+TextureProgressBar
+CollisionShape2D
+Area2D

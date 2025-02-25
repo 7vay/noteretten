@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8veawv8inmq7"]
+
+[ext_resource type="Script" path="res://scripts/inventory/building/buy_button.gd" id="1_dot4e"]
+[ext_resource type="Texture2D" uid="uid://dixsym0fxfdsh" path="res://assets/sprites/inventory/buy_button.png" id="2_m42os"]
+[ext_resource type="Texture2D" uid="uid://7l737u8d5vge" path="res://assets/sprites/inventory/power_generator_button.png" id="3_d0cb0"]
+
+[node name="BuyButton" type="Control"]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+script = ExtResource("1_dot4e")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 75.0
+texture = ExtResource("2_m42os")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 75.0
+texture = ExtResource("3_d0cb0")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

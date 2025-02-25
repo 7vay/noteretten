@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpnug6ttr2o34"]
+
+[ext_resource type="Script" path="res://scripts/components/breakable_bar.gd" id="1_cl3xo"]
+[ext_resource type="Texture2D" uid="uid://cj2wlss583an4" path="res://assets/sprites/visuals/breakable_bar_background.png" id="2_tudug"]
+[ext_resource type="Texture2D" uid="uid://dlvbqu5fry4hy" path="res://assets/sprites/visuals/breakable_bar_border.png" id="3_kuuyj"]
+[ext_resource type="Texture2D" uid="uid://c11j1ufq6jspp" path="res://assets/sprites/visuals/breakable_bar_indicator.png" id="4_gdqwh"]
+[ext_resource type="Texture2D" uid="uid://ce84jhtokerw2" path="res://assets/sprites/visuals/breakable_bar_filled.png" id="5_mfwhv"]
+
+[node name="BreakableBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cl3xo")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DamageBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -6.0
+offset_top = 8.0
+offset_right = 6.0
+offset_bottom = 13.0
+value = 70.0
+texture_under = ExtResource("2_tudug")
+texture_over = ExtResource("3_kuuyj")
+texture_progress = ExtResource("4_gdqwh")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = -6.0
+offset_top = 8.0
+offset_right = 6.0
+offset_bottom = 13.0
+value = 60.0
+texture_progress = ExtResource("5_mfwhv")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]

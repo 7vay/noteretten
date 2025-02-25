@@ -1,10 +1,13 @@
+<<<<<<< Updated upstream
 TileMap
+=======
+Node2D
+>>>>>>> Stashed changes
 NinePatchRect
 Sprite2D
 AnimationPlayer
 AnimatedSprite2D
 TextureRect
-Node2D
 Node
 Walking
 Idle

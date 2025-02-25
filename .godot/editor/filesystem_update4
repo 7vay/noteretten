@@ -19,6 +19,7 @@ res://Stefan/DNC/DNC Scenes/daynightcycle_ui.tscn
 res://Stefan/DNC/DNC Assets/daynightcycle-gradient-texture.tres
 res://scenes/day_night_cycle_scene.gd
 res://Stefan/DNC/DNC Scripts/Daynightcycle.gd
+<<<<<<< Updated upstream
 res://scripts/components/boundingbox.gd
 res://scripts/components/breakable_bar.gd
 res://scripts/inventory/building/buy_button.gd
@@ -54,3 +55,5 @@ res://scripts/states/player/state.gd
 res://scripts/stone.gd
 res://scripts/states/player/walking.gd
 res://Bennet/main_menu.tscn
+=======
+>>>>>>> Stashed changes

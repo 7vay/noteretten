@@ -1,0 +1,10 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://bunt3dtd4elir"]
+
+[sub_resource type="Gradient" id="Gradient_faefq"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.208301, 0.379708, 0.520216, 0.599539, 0.678709, 1)
+colors = PackedColorArray(0.11723, 0.360314, 0.476628, 1, 0.14813, 0.449619, 0.618236, 1, 0.255551, 0.565391, 0.815538, 1, 0.693237, 0.695841, 0.954029, 1, 0.789544, 0.745645, 0.986732, 1, 0.998127, 0.900313, 0.935502, 1, 1, 1, 1, 1)
+
+[resource]
+gradient = SubResource("Gradient_faefq")
+width = 2048

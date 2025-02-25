@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cptu8poyjm4fx"]
+
+[ext_resource type="PackedScene" uid="uid://2y4u2jk51eyn" path="res://scenes/player.tscn" id="1_sr2pe"]
+[ext_resource type="TileSet" uid="uid://0cnc5m8kqpin" path="res://tilesets/game_tile_set.tres" id="2_da3bn"]
+
+[node name="Game" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_da3bn")
+format = 2
+layer_0/name = "water"
+layer_0/z_index = -1
+layer_1/name = "gras"
+layer_1/z_index = -1
+layer_2/name = "sand"
+layer_2/z_index = -1
+layer_3/name = "magic"
+layer_3/z_index = -1
+layer_4/name = "ice"
+layer_4/z_index = -1
+layer_5/name = "hills"
+
+[node name="Player" parent="." instance=ExtResource("1_sr2pe")]
+position = Vector2(-1, -3)
+collision_layer = 2
+collision_mask = 257
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(4, 4)

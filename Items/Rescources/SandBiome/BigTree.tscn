@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch2b0e6vwmoqc"]
+
+[ext_resource type="Texture2D" uid="uid://2kxckesj12rp" path="res://assets/game/objects/Basic_Sand_Biome_things.png" id="1_bb0v5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrsyx"]
+atlas = ExtResource("1_bb0v5")
+region = Rect2(25.7851, 4.59594, 44.9985, 27.0654)
+
+[node name="sprite" type="Sprite2D"]
+texture = SubResource("AtlasTexture_xrsyx")

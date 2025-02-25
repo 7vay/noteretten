@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://chcgoxbd3a5tb"]
+[gd_scene load_steps=19 format=3 uid="uid://chcgoxbd3a5tb"]
 
 [ext_resource type="PackedScene" uid="uid://djfp1kvabayum" path="res://scenes/ui.tscn" id="1_g62fh"]
 [ext_resource type="PackedScene" uid="uid://bjdgo7rq2bvrm" path="res://scenes/items/dropped_item.tscn" id="1_jus4h"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b30h32snp14ks" path="res://scenes/inventory/inventory_screen.tscn" id="9_k1fpi"]
 [ext_resource type="Resource" uid="uid://ctxo46i7hxk15" path="res://scripts/item/implementation/stone.tres" id="10_b6lej"]
 [ext_resource type="PackedScene" uid="uid://d1va08jdayvjq" path="res://scenes/inventory/hotbar.tscn" id="12_5ptmo"]
+[ext_resource type="PackedScene" uid="uid://cptu8poyjm4fx" path="res://tilesets/game.tscn" id="15_us02e"]
 
 [sub_resource type="Animation" id="Animation_2wms5"]
 length = 0.001
@@ -120,6 +121,9 @@ inventory = NodePath("../../Player/Inventory")
 visible = false
 inventory = NodePath("../../Player/Inventory")
 placeable_manager = NodePath("../../PlaceableManager")
+
+[node name="Game" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("15_us02e")]
+camera = NodePath("../Camera2D")
 
 [connection signal="area_entered" from="PlaceableManager/CurrentPlaceable/Area2D" to="PlaceableManager/CurrentPlaceable" method="_on_area_enter"]
 [connection signal="area_exited" from="PlaceableManager/CurrentPlaceable/Area2D" to="PlaceableManager/CurrentPlaceable" method="_on_area_exit"]

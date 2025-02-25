@@ -1,0 +1,5 @@
+res://scenes/game.tscn
+res://tilesets/game_tile_set.tres
+res://scripts/item/implementation/default_drill.tres
+res://scenes/world.tscn
+res://tilesets/game.tscn

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://raw44ltk2pq"]
+
+[ext_resource type="Texture2D" uid="uid://bchupjamuanwk" path="res://assets/game/objects/testmagicbiome.png" id="1_mqyvc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrsyx"]
+atlas = ExtResource("1_mqyvc")
+region = Rect2(103.16, 50.8106, 31.3503, 20.8101)
+
+[node name="StoneIce" type="Sprite2D"]
+texture = SubResource("AtlasTexture_xrsyx")

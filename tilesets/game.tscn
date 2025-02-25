@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cptu8poyjm4fx"]
+
+[ext_resource type="Script" path="res://scripts/world/gen_world.gd" id="1_xm1sv"]
+[ext_resource type="TileSet" uid="uid://0cnc5m8kqpin" path="res://tilesets/game_tile_set.tres" id="2_da3bn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qg55h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ms2dp"]
+noise = SubResource("FastNoiseLite_qg55h")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lj36h"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_27keo"]
+noise = SubResource("FastNoiseLite_lj36h")
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_xm1sv")
+noiseHeight = SubResource("NoiseTexture2D_ms2dp")
+noiseBiome = SubResource("NoiseTexture2D_27keo")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_da3bn")
+format = 2
+layer_0/name = "water"
+layer_0/z_index = -1
+layer_1/name = "gras"
+layer_1/z_index = -1
+layer_2/name = "sand"
+layer_2/z_index = -1
+layer_3/name = "magic"
+layer_3/z_index = -1
+layer_4/name = "ice"
+layer_4/z_index = -1
+layer_5/name = "hills"

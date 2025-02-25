@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1cs5qvdgiu2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrsyx"]
+region = Rect2(78, 66, 20, 15)
+
+[node name="StoneIce" type="Sprite2D"]
+texture = SubResource("AtlasTexture_xrsyx")
